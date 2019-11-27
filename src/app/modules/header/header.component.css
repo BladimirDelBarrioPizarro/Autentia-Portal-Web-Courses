@@ -1,0 +1,10 @@
+.item-header{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+}
+img{
+    width: 40rem;
+    height: 15rem;
+}

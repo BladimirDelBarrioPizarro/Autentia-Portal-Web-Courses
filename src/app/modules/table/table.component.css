@@ -1,0 +1,27 @@
+.mat-elevation-z8{
+  margin-left: 2em;
+  margin-right:2em;
+}
+
+table {
+  width: 80%;
+  margin: 3em;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+h2{
+  margin-left: 2em;
+}
+
+td, th {
+  width: 25%;
+} 
+
+button{
+ margin-left: 50em;
+ margin-top: 2em;;
+}
