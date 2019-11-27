@@ -85,9 +85,6 @@ function createNewUser(id: number): UserData {
 
   
 
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
 
 
 

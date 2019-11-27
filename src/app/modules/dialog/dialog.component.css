@@ -1,4 +1,45 @@
-.item-dialog{
-    width: 50%;
-    height: 50%;
+h1,label{
+    font-weight: bold;
+}
+
+form{
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+
+input{
+    
+    margin-top: 1rem; 
+} 
+
+input[type="checkbox"]{
+    margin-left: 2rem;
+}
+
+select{
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+
+input[type="text"]{
+   margin-left: 2.3rem;
+   
+}
+
+input[type="number"]{
+    margin-left: 2.1rem;
+    width: 2rem;
+    
+ }
+
+
+button{
+    margin:3rem;
+}
+
+#item-level{
+    margin-left:2.6rem;
 }
