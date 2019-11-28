@@ -10,7 +10,7 @@ import {MatFormFieldModule, MatInputModule, MatSelectModule,MatTooltipModule} fr
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogDataExampleDialog} from './modules/dialog/dialog.component';
-
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import {DialogDataExampleDialog} from './modules/dialog/dialog.component';
     MatSelectModule,
     MatTooltipModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   exports:[
     MatTableModule,

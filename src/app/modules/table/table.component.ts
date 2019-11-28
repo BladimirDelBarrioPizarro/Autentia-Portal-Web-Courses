@@ -1,15 +1,16 @@
-import {Component, OnInit, ViewChild,Inject} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {DialogDataExampleDialog} from '../dialog/dialog.component';
+import { isNgTemplate } from '@angular/compiler';
 
 export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
+  id : string; //titulo
+  name: string; //nivel
+  progress: string;//profesor
+  color: string;//horas
 }
 
 /** Constants used to fill up our data base. */
@@ -41,7 +42,7 @@ export class TableOverviewExample implements OnInit {
 
   constructor(public dialog: MatDialog) {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    const users = Array.from({length: 50}, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
@@ -69,23 +70,87 @@ export class TableOverviewExample implements OnInit {
   }
 }
 
+const response = [
+  {
+      "id": 1,
+      "title": "Introducción a JSF 2",
+      "professor": "Roberto Canales",
+      "level": "Intermedio",
+      "hours": 25,
+      "active": true
+  },
+  {
+      "id": 3,
+      "title": "Novedades en Java 8",
+      "professor": "David Goméz",
+      "level": "Básico",
+      "hours": 10,
+      "active": true
+  },
+  {
+      "id": 4,
+      "title": "Java para sistemas",
+      "professor": "Alberto Moratilla",
+      "level": "Básico",
+      "hours": 25,
+      "active": true
+  },
+  {
+      "id": 5,
+      "title": "Angular 2",
+      "professor": "Rubén Aguilera",
+      "level": "Intermedio",
+      "hours": 25,
+      "active": true
+  }
+]
+
+
+
+
 /** Builds and returns a new User. */
 function createNewUser(id: number): UserData {
   const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
       NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
+    //Array y push algoritmo de createNewUser
+    let titleStr: string[] = [];
+      for (const prop in response) {
+        console.log(`obj.${prop} = ${response[prop].title}`);
+        titleStr.push(response[prop].title);
+      }
+
+      let levelStr: string[] = [];
+      for (const prop in response) {
+        console.log(`obj.${prop} = ${response[prop].level}`);
+        levelStr.push(response[prop].level);
+      }
+
+      let profesorStr: string[] = [];
+      for (const prop in response) {
+        console.log(`obj.${prop} = ${response[prop].professor}`);
+        profesorStr.push(response[prop].professor);
+      }
+    
+      const title = titleStr[Math.round(Math.random() * (titleStr.length - 1))] ;
+
+      const level = levelStr[Math.round(Math.random() * (levelStr.length - 1))];
+
+      const profesor = profesorStr[Math.round(Math.random() * (profesorStr.length - 1))] ;
+ 
   return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
+    id: title,
+    name: level,
+    progress: profesor,
     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
   };
+
 }
 
 
   
 
-
+ 
 
 
 
