@@ -12,6 +12,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DialogDataExampleDialog} from './modules/dialog/dialog.component';
 import { HttpClientModule} from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
