@@ -13,19 +13,12 @@ export interface UserData {
   color: string;//horas
 }
 
-/** Constants used to fill up our data base. */
 const COLORS: string[] = [
   'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
   'aqua', 'blue', 'navy', 'black', 'gray'
 ];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
+
 
 
 @Component({
@@ -51,7 +44,7 @@ export class TableOverviewExample implements OnInit {
   openDialog() {
     this.dialog.open(DialogDataExampleDialog, {
       data: {
-        animal: 'panda'
+        animal: 'course'
       }
     });
   }
@@ -110,10 +103,7 @@ const response = [
 
 /** Builds and returns a new User. */
 function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
-    //Array y push algoritmo de createNewUser
     let titleStr: string[] = [];
       for (const prop in response) {
         console.log(`obj.${prop} = ${response[prop].title}`);
