@@ -11,7 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogDataExampleDialog} from './modules/dialog/dialog.component';
 import { HttpClientModule} from '@angular/common/http';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { HttpClientModule} from '@angular/common/http';
     MatTooltipModule,
     MatButtonModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   exports:[
     MatTableModule,
