@@ -8,11 +8,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     name:''
   }
 
-
-// Declarar variable global course
-// En los gets ir seteandola con los parámetros
-
-
   @Component({
     templateUrl: 'dialog.component.html',
     styleUrls: ['./dialog.component.css']
@@ -21,52 +16,50 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   export class DialogDataExampleDialog {
     apiData;
     professors;
-    active:boolean;
+    formData: string[] = [];
     constructor(@Inject(MAT_DIALOG_DATA) public data: Professor,private _snackBar: MatSnackBar) {}
 
     ngOnInit() {
       const url = `http://localhost:8083/api/v1/professors`;
       this.apiData = ajax(url);
       this.apiData.subscribe(res => {
-        console.log(res.status, res.response)
         this.professors = res.response;
       });
     }
 
     getActive($e){
-      const active = $e.target.checked;
-      console.log(active)
-      this.active = $e.target.checked;
+      this.formData = [];
+      this.formData.push($e.target.checked)
     }
-
     getProfessor($e){
-      const id = $e.target.value;
-      console.log(id)
-      return id;
+      this.formData.push($e.target.value)
     }
-
-
     getTitle($e){
-      const title = $e.target.value;
-      console.log(title);
+      this.formData.push($e.target.value)
+    }
+    getLevel($e){
+      this.formData.push($e.target.value)
+    }
+    getHours($e){
+      this.formData.push($e.target.value)
     }
 
-    getLevel($e){
-      const level = $e.target.value;
-      console.log(level);
-    }
 
     insertCourse($e){
+      console.log(this.formData)
       $e.preventDefault();
+       let json = {
+        "title": this.formData[3],
+        "professor": this.formData[2],
+        "level": this.formData[4],
+        "hours": this.formData[5],
+        "active": this.formData[0]
+      } 
+    console.log(json)
       const url = `http://localhost:8083/api/v1/course`;
-      const active = this.getActive;
-      const idProfessor = this.getProfessor;
-      console.log(idProfessor);
-      console.log(active)
-      console.log(this.professors);
-      /* const name = Object.keys(this.professors).map(item => item. == idProfessor);
-      console.log(name) */
     }
+
+ 
 
     openSnackBar(message: string, action: string) {
       this._snackBar.open(message, action, {

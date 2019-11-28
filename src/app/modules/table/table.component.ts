@@ -37,7 +37,6 @@ export class TableOverviewExample implements OnInit {
     const url = `http://localhost:8083/api/v1/course?page=0&size=10&sort=title`;
     this.apiData = ajax(url);
     this.apiData.subscribe(res => {
-      console.log(res.status, res.response)
       const courses = res.response;
       this.dataSource = new MatTableDataSource(courses);
       this.dataSource.paginator = this.paginator;
