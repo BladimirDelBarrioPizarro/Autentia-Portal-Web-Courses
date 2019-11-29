@@ -1,6 +1,9 @@
 import {Component, Inject} from '@angular/core';
 import { MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ajax } from 'rxjs/ajax';
+import { of } from 'rxjs';
+import {FormBuilder,FormGroup,FormControl} from '@angular/forms';
+
 import {MatSnackBar} from '@angular/material/snack-bar';
 
   export interface Professor {
@@ -16,8 +19,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   export class DialogDataExampleDialog {
     apiData;
     professors;
-    formData: string[] = [];
-    constructor(@Inject(MAT_DIALOG_DATA) public data: Professor,private _snackBar: MatSnackBar) {}
+    myForm: FormGroup;
+    constructor(@Inject(MAT_DIALOG_DATA) public data: Professor,private _snackBar: MatSnackBar,private fb: FormBuilder) {}
 
     ngOnInit() {
       const url = `http://localhost:8083/api/v1/professors`;
@@ -25,38 +28,51 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       this.apiData.subscribe(res => {
         this.professors = res.response;
       });
-    }
-
-    getActive($e){
-      this.formData = [];
-      this.formData.push($e.target.checked)
-    }
-    getProfessor($e){
-      this.formData.push($e.target.value)
-    }
-    getTitle($e){
-      this.formData.push($e.target.value)
-    }
-    getLevel($e){
-      this.formData.push($e.target.value)
-    }
-    getHours($e){
-      this.formData.push($e.target.value)
+     
+      this.myForm = this.fb.group({
+        active: new FormControl(''),
+        professor: new FormControl(''),
+        title: new FormControl(''),
+        level: new FormControl(''),
+        hours: new FormControl('')
+      }) 
     }
 
 
+  
     insertCourse($e){
-      console.log(this.formData)
       $e.preventDefault();
+      const active = this.myForm.get('active').value;
+      const title = this.myForm.get('title').value;
+      const level = this.myForm.get('level').value;
+      const hours = this.myForm.get('hours').value;
+
+      console.log(this.myForm.value);
+     
+    
        let json = {
-        "title": this.formData[3],
-        "professor": this.formData[2],
-        "level": this.formData[4],
-        "hours": this.formData[5],
-        "active": this.formData[0]
+        "title":title,
+        "professor": JSON.parse(this.myForm.controls.professor.value),
+        "level": level,
+        "hours": hours,
+        "active": active
       } 
-    console.log(json)
+      this.myForm.reset;
+      console.log(json.title)
       const url = `http://localhost:8083/api/v1/course`;
+      this.apiData  = ajax({
+        url: url,
+        method: 'POST',
+        body: json,
+        headers: {
+          'Content-Type': 'application/json',
+          'rxjs-custom-header': 'Rxjs',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+      this.apiData.subscribe(res => {
+        console.log(res.response);
+      });
     }
 
  

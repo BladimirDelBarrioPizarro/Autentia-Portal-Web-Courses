@@ -1,23 +1,23 @@
 <h1 mat-dialog-title>Añadir Curso</h1>
 <div mat-dialog-content class="item-dialog">
-  <form>
-    <label>Activo  <input type="checkbox" id="item-active" (click)="getActive($event)"/></label>
+  <form [formGroup]="myForm" ng-controller="repeatController">
+    <label>Activo  <input type="checkbox" id="item-active" formControlName="active"/></label>
     <label>Profesor 
-      <select name="select" id="item-professor" (click)="getProfessor($event)">
+      <select name="select" id="item-professor" formControlName="professor">
           <option></option>
-          <option [value]="professor" *ngFor='let professor of professors'>
+          <option value="{{professor | json}}" *ngFor='let professor of professors'>
               {{professor.name}}
             </option>
     </select></label>
-    <label>Título <input type="text" id="item-title" (change)="getTitle($event)"/></label>
+    <label>Título <input type="text" id="item-title" formControlName="title"/></label>
     <label>Nivel 
-        <select name="select" id="item-level" (change)="getLevel($event)">
+        <select name="select" id="item-level" formControlName="level">
             <option></option>
         <option value="Intermedio">Intermedio</option> 
         <option value="Básico" selected>Básico</option>
         </select>
       </label>
-      <label>Horas  <input type="number" id="item-hours" (change)="getHours($event)"/></label>
+      <label>Horas  <input type="number" id="item-hours" formControlName="hours"/></label>
       <button mat-raised-button color="primary" type="submit" (click)="insertCourse($event)">Añadir</button>
   </form>
 </div>

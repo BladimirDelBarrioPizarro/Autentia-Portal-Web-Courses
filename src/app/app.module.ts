@@ -12,6 +12,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DialogDataExampleDialog} from './modules/dialog/dialog.component';
 import { HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatButtonModule,
     MatDialogModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     MatTableModule,
