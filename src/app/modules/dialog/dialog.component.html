@@ -18,6 +18,7 @@
         </select>
       </label>
       <label>Horas  <input type="number" id="item-hours" formControlName="hours"/></label>
+      <label>Temario  <input type="file" id="path" (change)="handleFileInput($event.target.files)" formControlName="path"/></label>
       <button mat-raised-button color="primary" type="submit" (click)="insertCourse($event)">Añadir</button>
   </form>
 </div>

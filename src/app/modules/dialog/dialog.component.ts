@@ -24,6 +24,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     apiData;
     professors;
     myForm: FormGroup;
+    fileToUpload: File = null;
     constructor(@Inject(MAT_DIALOG_DATA) public data: Professor,private _snackBar: MatSnackBar,private fb: FormBuilder) {}
 
     ngOnInit() {
@@ -38,17 +39,68 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         professor: new FormControl(''),
         title: new FormControl(''),
         level: new FormControl(''),
-        hours: new FormControl('')
+        hours: new FormControl(''),
+        path:new FormControl('')
       }) 
     }
 
+    handleFileInput(files: FileList) {
+      this.fileToUpload = files.item(0);
+      console.log(this.fileToUpload)
+  }
+
+    fileChange($e) {
+      console.log($e)
+      var input = document.querySelector('input[type=file]');
+      console.log(input);
+     
+      var reader = new FileReader();
+     // reader.readAsText(file);
+     /*  if (files && files.length > 0) {
+       let file = files[0];
+       let formData = new FormData();
+       formData.append('file', file);
+       console.log(formData)
+
+      }   */
+
+      /**
+       * 
+       * function readFile(event) {
+  textarea.textContent = event.target.result;
+  console.log(event.target.result);
+}
+
+function changeFile() {
+  var file = input.files[0];
+  var reader = new FileReader();
+  reader.addEventListener('load', readFile);
+  reader.readAsText(file);
+}
+
+input.addEventListener('change', changeFile);
+       * 
+       * 
+       * 
+       */
+
+
+
+
+
+
+
+
+    }
     insertCourse($e){
       $e.preventDefault();
       const active = this.myForm.get('active').value;
       const title = this.myForm.get('title').value;
       const level = this.myForm.get('level').value;
       const hours = this.myForm.get('hours').value;
-
+     /*  const path = this.myForm.get('path').value;
+      const path2 = path.replace("C:\\fakepath\\",""); */
+     
        let json = {
         "title":title,
         "professor": JSON.parse(this.myForm.controls.professor.value),
@@ -57,7 +109,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         "active": active
       } 
       this.myForm.reset;
-      console.log(json.title)
+      
       const url = `http://localhost:8083/api/v1/course`;
       this.apiData  = ajax({
         url: url,
@@ -73,7 +125,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         console.log(res.response);
         this.openSnackBar("Course inserted correctly","SUCCESS")
       });
-      window.location.reload();
+     // window.location.reload();
     }
 
  
