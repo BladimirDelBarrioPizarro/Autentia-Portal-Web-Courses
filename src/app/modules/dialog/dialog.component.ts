@@ -1,7 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import { MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ajax } from 'rxjs/ajax';
-import { of } from 'rxjs';
 import {FormBuilder,FormGroup,FormControl} from '@angular/forms';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -14,6 +13,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   @Component({
     templateUrl: 'dialog.component.html',
     styleUrls: ['./dialog.component.css']
+})
+
+@Component({
+  templateUrl: 'snackbar.component.html',
+  styleUrls: ['./dialog.component.css']
 })
 
   export class DialogDataExampleDialog {
@@ -38,8 +42,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       }) 
     }
 
-
-  
     insertCourse($e){
       $e.preventDefault();
       const active = this.myForm.get('active').value;
@@ -47,9 +49,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       const level = this.myForm.get('level').value;
       const hours = this.myForm.get('hours').value;
 
-      console.log(this.myForm.value);
-     
-    
        let json = {
         "title":title,
         "professor": JSON.parse(this.myForm.controls.professor.value),
@@ -72,14 +71,16 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       });
       this.apiData.subscribe(res => {
         console.log(res.response);
+        this.openSnackBar("Course inserted correctly","SUCCESS")
       });
+      window.location.reload();
     }
 
  
 
     openSnackBar(message: string, action: string) {
       this._snackBar.open(message, action, {
-        duration: 2000,
+        duration: 10000,
       });
     }
 

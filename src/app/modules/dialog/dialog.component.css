@@ -10,7 +10,6 @@ form{
 
 
 input{
-    
     margin-top: 1rem; 
 } 
 
@@ -43,3 +42,15 @@ button{
 #item-level{
     margin-left:2.6rem;
 }
+
+
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: greenyellow;
+    background-color: greenyellow;
+  }
+  /* Font color */
+  input.mat-input-element {
+    color: greenyellow;
+    background-color: greenyellow;
+  }
