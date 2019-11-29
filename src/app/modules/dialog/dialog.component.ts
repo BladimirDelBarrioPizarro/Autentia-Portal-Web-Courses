@@ -47,66 +47,29 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     handleFileInput(files: FileList) {
       this.fileToUpload = files.item(0);
       console.log(this.fileToUpload)
+      var file = new Blob([this.fileToUpload], {type: 'application/pdf'});
+      var fileURL = URL.createObjectURL(file);
+      console.log(fileURL)
+      window.open(fileURL);
   }
 
-    fileChange($e) {
-      console.log($e)
-      var input = document.querySelector('input[type=file]');
-      console.log(input);
-     
-      var reader = new FileReader();
-     // reader.readAsText(file);
-     /*  if (files && files.length > 0) {
-       let file = files[0];
-       let formData = new FormData();
-       formData.append('file', file);
-       console.log(formData)
-
-      }   */
-
-      /**
-       * 
-       * function readFile(event) {
-  textarea.textContent = event.target.result;
-  console.log(event.target.result);
-}
-
-function changeFile() {
-  var file = input.files[0];
-  var reader = new FileReader();
-  reader.addEventListener('load', readFile);
-  reader.readAsText(file);
-}
-
-input.addEventListener('change', changeFile);
-       * 
-       * 
-       * 
-       */
-
-
-
-
-
-
-
-
-    }
+   
     insertCourse($e){
       $e.preventDefault();
       const active = this.myForm.get('active').value;
       const title = this.myForm.get('title').value;
       const level = this.myForm.get('level').value;
       const hours = this.myForm.get('hours').value;
-     /*  const path = this.myForm.get('path').value;
-      const path2 = path.replace("C:\\fakepath\\",""); */
+      const path = this.fileToUpload;
+     
      
        let json = {
         "title":title,
         "professor": JSON.parse(this.myForm.controls.professor.value),
         "level": level,
         "hours": hours,
-        "active": active
+        "active": active,
+        "path":this.fileToUpload
       } 
       this.myForm.reset;
       
