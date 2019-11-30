@@ -25,6 +25,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     professors;
     myForm: FormGroup;
     fileToUpload: File = null;
+    fileURL;
     constructor(@Inject(MAT_DIALOG_DATA) public data: Professor,private _snackBar: MatSnackBar,private fb: FormBuilder) {}
 
     ngOnInit() {
@@ -47,12 +48,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     handleFileInput(files: FileList) {
       this.fileToUpload = files.item(0);
       console.log(this.fileToUpload)
-      var file = new Blob([this.fileToUpload], {type: 'application/pdf'});
-      var fileURL = URL.createObjectURL(file);
-      console.log(fileURL)
-      window.open(fileURL);
+      let file = new Blob([this.fileToUpload], {type: 'application/pdf'});
+      this.fileURL = URL.createObjectURL(file); 
+      window.open(this.fileURL)
   }
 
+ 
+
+ 
    
     insertCourse($e){
       $e.preventDefault();
@@ -60,16 +63,15 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       const title = this.myForm.get('title').value;
       const level = this.myForm.get('level').value;
       const hours = this.myForm.get('hours').value;
-      const path = this.fileToUpload;
      
-     
+      
        let json = {
         "title":title,
         "professor": JSON.parse(this.myForm.controls.professor.value),
         "level": level,
         "hours": hours,
         "active": active,
-        "path":this.fileToUpload
+        "fileURL":this.fileURL
       } 
       this.myForm.reset;
       
@@ -88,14 +90,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         console.log(res.response);
         this.openSnackBar("Course inserted correctly","SUCCESS")
       });
-     // window.location.reload();
+      window.location.reload();
     }
 
  
 
     openSnackBar(message: string, action: string) {
       this._snackBar.open(message, action, {
-        duration: 10000,
+        duration: 8000,
       });
     }
 
