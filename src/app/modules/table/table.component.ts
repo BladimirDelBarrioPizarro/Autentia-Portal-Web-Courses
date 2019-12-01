@@ -5,7 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogDataExampleDialog} from '../dialog/dialog.component';
 import { ajax } from 'rxjs/ajax';
-import { ConsoleReporter } from 'jasmine';
+
 
 
 
@@ -35,7 +35,7 @@ export class TableOverviewExample implements OnInit {
   }
 
   ngOnInit() {
-    const url = `http://localhost:8083/api/v1/course?page=0&size=10&sort=title`;
+    const url = `http://localhost:8083/api/v1/course?page=0&size=100&sort=title`;
     this.apiData = ajax(url);
     this.apiData.subscribe(res => {
       const courses = res.response;
@@ -55,21 +55,22 @@ export class TableOverviewExample implements OnInit {
   }
 
   getPDF(fileURL){
-    console.log("getpdf")
-    const fileName: string = 'my-test.pdf';
-    const blob: Blob = new Blob([fileURL], {type: 'application/pdf'});
+    console.log(fileURL)
+ 
+    const fileName: string = 'temario.pdf';
+    const byteArray = new Uint8Array(atob(fileURL).split('').map(char => char.charCodeAt(0)));
+    let blob2 = new Blob([byteArray], {type: 'application/pdf'});
     
-    const objectUrl: string = URL.createObjectURL(blob);
-    console.log(objectUrl)
+    const url = window.URL.createObjectURL(blob2);
+    window.open(url)
     const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-
-    a.href = objectUrl;
+    a.href = url;
     a.download = fileName;
     document.body.appendChild(a);
-    a.click();        
-
+    a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(objectUrl); 
+    URL.revokeObjectURL(fileURL);
+  
   }
 }
 

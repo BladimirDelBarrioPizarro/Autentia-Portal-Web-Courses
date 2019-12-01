@@ -26,6 +26,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     myForm: FormGroup;
     fileToUpload: File = null;
     fileURL;
+    blob;
+    arraybytes;
     constructor(@Inject(MAT_DIALOG_DATA) public data: Professor,private _snackBar: MatSnackBar,private fb: FormBuilder) {}
 
     ngOnInit() {
@@ -47,13 +49,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 
     handleFileInput(files: FileList) {
       this.fileToUpload = files.item(0);
-      console.log(this.fileToUpload)
-      let file = new Blob([this.fileToUpload], {type: 'application/pdf'});
-      this.fileURL = URL.createObjectURL(file); 
-      window.open(this.fileURL)
-  }
-
- 
+      this.blob = new Blob([this.fileToUpload], {type: 'application/pdf'});
+      this.fileURL = URL.createObjectURL(this.blob); 
+       var reader = new FileReader();
+      reader.readAsBinaryString(this.blob);
+      reader.onloadend = (event) => {
+          this.arraybytes = reader.result;  
+       }        
+  } 
 
  
    
@@ -65,16 +68,18 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       const hours = this.myForm.get('hours').value;
      
       
+      
        let json = {
         "title":title,
         "professor": JSON.parse(this.myForm.controls.professor.value),
         "level": level,
         "hours": hours,
         "active": active,
-        "fileURL":this.fileURL
+        "fileURL": btoa(this.arraybytes)
+
       } 
       this.myForm.reset;
-      
+      console.log(json)
       const url = `http://localhost:8083/api/v1/course`;
       this.apiData  = ajax({
         url: url,
@@ -90,14 +95,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         console.log(res.response);
         this.openSnackBar("Course inserted correctly","SUCCESS")
       });
-      window.location.reload();
+     //window.location.reload();
     }
 
  
 
     openSnackBar(message: string, action: string) {
       this._snackBar.open(message, action, {
-        duration: 8000,
+        duration: 6000,
       });
     }
 
