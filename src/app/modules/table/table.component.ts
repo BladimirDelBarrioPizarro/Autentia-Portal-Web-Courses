@@ -56,9 +56,9 @@ export class TableOverviewExample implements OnInit {
  
     const fileName: string = 'temario.pdf';
     const byteArray = new Uint8Array(atob(fileURL).split('').map(char => char.charCodeAt(0)));
-    let blob2 = new Blob([byteArray], {type: 'application/pdf'});
+    let blob = new Blob([byteArray], {type: 'application/pdf'});
     
-    const url = window.URL.createObjectURL(blob2);
+    const url = window.URL.createObjectURL(blob);
     window.open(url)
     const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
     a.href = url;
