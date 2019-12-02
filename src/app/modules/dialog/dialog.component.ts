@@ -92,11 +92,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         console.log(res.response);
         this.openSnackBar("Course inserted correctly","SUCCESS")
       });
-     let miPrimeraPromise = new Promise((resolve, reject) => {
+      let promise = new Promise((resolve, reject) => {
       setTimeout(function(){
         resolve(window.location.reload()); 
       }, 5000);
-    });
+    }); 
     }
 
 
