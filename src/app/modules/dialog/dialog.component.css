@@ -49,7 +49,6 @@ input[type="number"]{
 	border: 1px solid #C2C2C2;
 	box-shadow: 1px 1px 4px #EBEBEB;
 	-moz-box-shadow: 1px 1px 4px #EBEBEB;
-/*	-webkit-box-shadow: 1px 1px 4px #EBEBEB; */
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -69,13 +68,10 @@ button{
 .item-dialog{
     max-width: 500px;
 	padding: 20px 12px 10px 20px;
-	/*font: 13px Arial, Helvetica, sans-serif; */
 }
 
 .item-form{
     font-weight: bold;
-	/*font-style: italic; */
-	border-bottom: 2px solid #ddd;
 	margin-bottom: 20px;
 	font-size: 15px;
 	padding-bottom: 3px;
@@ -96,7 +92,6 @@ select{
 	outline: none;
 }
 
-
-.item-professor{
-    margin-right: 1rem;
-}
+.green-snackbar {
+    background: darkgreen !important
+  }

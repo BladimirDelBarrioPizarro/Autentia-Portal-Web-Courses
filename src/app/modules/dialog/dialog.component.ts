@@ -78,7 +78,6 @@ import{ AppConstants} from '../constants/AppConstants';
 
       } 
       this.myForm.reset;
-      console.log(json)
       this.apiData  = ajax({
         url: this.URLPOST,
         method: 'POST',
@@ -86,20 +85,20 @@ import{ AppConstants} from '../constants/AppConstants';
         headers: this.HEADERS,
       });
       this.apiData.subscribe(res => {
-        console.log(res.response);
         this.openSnackBar("Course inserted correctly","SUCCESS")
       });
-      let promise = new Promise((resolve, reject) => {
+       let promise = new Promise((resolve, reject) => {
       setTimeout(function(){
         resolve(window.location.reload()); 
       }, 5000);
-    }); 
+    });  
     }
 
 
     openSnackBar(message: string, action: string) {
       this._snackBar.open(message, action, {
         duration: 2000,
+        panelClass: ['green-snackbar']
       });
     }
   }
