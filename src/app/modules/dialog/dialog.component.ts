@@ -2,13 +2,12 @@ import {Component, Inject} from '@angular/core';
 import { MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ajax } from 'rxjs/ajax';
 import {FormBuilder,FormGroup,FormControl} from '@angular/forms';
-
 import {MatSnackBar} from '@angular/material/snack-bar';
 
-  export interface Professor {
+   export interface Professor {
     id:'',
     name:''
-  }
+  } 
 
   @Component({
     templateUrl: 'dialog.component.html',
@@ -67,8 +66,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       const level = this.myForm.get('level').value;
       const hours = this.myForm.get('hours').value;
      
-      
-      
        let json = {
         "title":title,
         "professor": JSON.parse(this.myForm.controls.professor.value),
@@ -95,16 +92,18 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         console.log(res.response);
         this.openSnackBar("Course inserted correctly","SUCCESS")
       });
-     //window.location.reload();
+     let miPrimeraPromise = new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve(window.location.reload()); 
+      }, 5000);
+    });
     }
 
- 
 
     openSnackBar(message: string, action: string) {
       this._snackBar.open(message, action, {
-        duration: 6000,
+        duration: 2000,
       });
     }
-
   }
 
