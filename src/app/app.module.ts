@@ -14,6 +14,9 @@ import { HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms'; 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     TableOverviewExample,
     MatPaginator,
     DialogDataExampleDialog
+    
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule
+    
   ],
   exports:[
     MatTableModule,
