@@ -36,7 +36,6 @@ export class TableOverviewExample implements OnInit {
     this.apiData = ajax(this.urlGET);
     this.apiData.subscribe(res => {
       const courses = res.response;
-      console.log(courses)
       this.dataSource = new MatTableDataSource(courses);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -52,8 +51,6 @@ export class TableOverviewExample implements OnInit {
   }
 
   getPDF(fileURL){
-    console.log(fileURL)
- 
     const fileName: string = 'temario.pdf';
     const byteArray = new Uint8Array(atob(fileURL).split('').map(char => char.charCodeAt(0)));
     let blob = new Blob([byteArray], {type: 'application/pdf'});

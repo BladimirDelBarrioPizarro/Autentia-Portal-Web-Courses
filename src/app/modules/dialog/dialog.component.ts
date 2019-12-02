@@ -4,12 +4,13 @@ import { ajax } from 'rxjs/ajax';
 import {FormBuilder,FormGroup,FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import{ AppConstants} from '../constants/AppConstants';
-   export interface Professor {
+
+export interface Professor {
     id:'',
     name:''
   } 
 
-  @Component({
+@Component({
     templateUrl: 'dialog.component.html',
     styleUrls: ['./dialog.component.css']
 })
@@ -87,7 +88,7 @@ import{ AppConstants} from '../constants/AppConstants';
       this.apiData.subscribe(res => {
         this.openSnackBar("Course inserted correctly","SUCCESS")
       });
-       let promise = new Promise((resolve, reject) => {
+      let promise = new Promise((resolve) => {
       setTimeout(function(){
         resolve(window.location.reload()); 
       }, 5000);
