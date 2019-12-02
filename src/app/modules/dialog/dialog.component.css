@@ -10,7 +10,7 @@ form{
 
 
 input{
-    margin-top: 1rem; 
+    margin-top: 1rem;
 } 
 
 input[type="checkbox"]{
@@ -23,15 +23,38 @@ select{
 }
 
 
+
 input[type="text"]{
    margin-left: 2.3rem;
-   
+   box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   border: 1px solid #C2C2C2;
+   box-shadow: 1px 1px 4px #EBEBEB;
+   -moz-box-shadow: 1px 1px 4px #EBEBEB;
+   -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+   border-radius: 3px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   padding: 7px;
+   outline: none; 
 }
 
 input[type="number"]{
     margin-left: 2.1rem;
-    width: 2rem;
-    
+    width: 4rem;
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	box-shadow: 1px 1px 4px #EBEBEB;
+	-moz-box-shadow: 1px 1px 4px #EBEBEB;
+/*	-webkit-box-shadow: 1px 1px 4px #EBEBEB; */
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 7px;
+	outline: none; 
  }
 
 
@@ -43,14 +66,37 @@ button{
     margin-left:2.6rem;
 }
 
+.item-dialog{
+    max-width: 500px;
+	padding: 20px 12px 10px 20px;
+	/*font: 13px Arial, Helvetica, sans-serif; */
+}
 
-/* Border */
-.mat-form-field-appearance-outline .mat-form-field-outline {
-    color: greenyellow;
-    background-color: greenyellow;
-  }
-  /* Font color */
-  input.mat-input-element {
-    color: greenyellow;
-    background-color: greenyellow;
-  }
+.item-form{
+    font-weight: bold;
+	/*font-style: italic; */
+	border-bottom: 2px solid #ddd;
+	margin-bottom: 20px;
+	font-size: 15px;
+	padding-bottom: 3px;
+}
+
+select{
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	box-shadow: 1px 1px 4px #EBEBEB;
+	-moz-box-shadow: 1px 1px 4px #EBEBEB;
+	-webkit-box-shadow: 1px 1px 4px #EBEBEB;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 7px;
+	outline: none;
+}
+
+
+.item-professor{
+    margin-right: 1rem;
+}

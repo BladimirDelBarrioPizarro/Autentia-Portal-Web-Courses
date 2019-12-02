@@ -5,7 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogDataExampleDialog} from '../dialog/dialog.component';
 import { ajax } from 'rxjs/ajax';
-
+import{ AppConstants} from '../constants/AppConstants';
 
 
 
@@ -19,9 +19,7 @@ export class TableOverviewExample implements OnInit {
   displayedColumns: string[] = ['title', 'level', 'professor', 'hours','fileURL'];
   dataSource: MatTableDataSource<any>;
   apiData;
-  page:'0';
-  size:'10';
-  sorted:'title';
+  urlGET = AppConstants.GET_COURSES;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -35,8 +33,7 @@ export class TableOverviewExample implements OnInit {
   }
 
   ngOnInit() {
-    const url = `http://localhost:8083/api/v1/course?page=0&size=100&sort=title`;
-    this.apiData = ajax(url);
+    this.apiData = ajax(this.urlGET);
     this.apiData.subscribe(res => {
       const courses = res.response;
       console.log(courses)
@@ -70,7 +67,6 @@ export class TableOverviewExample implements OnInit {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(fileURL);
-  
   }
 }
 

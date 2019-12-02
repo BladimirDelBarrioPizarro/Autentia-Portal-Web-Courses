@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ajax } from 'rxjs/ajax';
 import {FormBuilder,FormGroup,FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
+import{ AppConstants} from '../constants/AppConstants';
    export interface Professor {
     id:'',
     name:''
@@ -27,11 +27,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     fileURL;
     blob;
     arraybytes;
+    URLPOST = AppConstants.POST_COURSES;
+    URLGET = AppConstants.GET_PROFESSORS;
+    HEADERS = AppConstants.HEADERS;
     constructor(@Inject(MAT_DIALOG_DATA) public data: Professor,private _snackBar: MatSnackBar,private fb: FormBuilder) {}
 
     ngOnInit() {
-      const url = `http://localhost:8083/api/v1/professors`;
-      this.apiData = ajax(url);
+      this.apiData = ajax(this.URLGET);
       this.apiData.subscribe(res => {
         this.professors = res.response;
       });
@@ -77,16 +79,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       } 
       this.myForm.reset;
       console.log(json)
-      const url = `http://localhost:8083/api/v1/course`;
       this.apiData  = ajax({
-        url: url,
+        url: this.URLPOST,
         method: 'POST',
         body: json,
-        headers: {
-          'Content-Type': 'application/json',
-          'rxjs-custom-header': 'Rxjs',
-          'Access-Control-Allow-Origin': '*'
-        }
+        headers: this.HEADERS,
       });
       this.apiData.subscribe(res => {
         console.log(res.response);
