@@ -52,10 +52,9 @@ export interface Professor {
     handleFileInput(files: FileList) {
       this.fileToUpload = files.item(0);
       this.blob = new Blob([this.fileToUpload], {type: 'application/pdf'});
-      this.fileURL = URL.createObjectURL(this.blob); 
-       var reader = new FileReader();
-      reader.readAsBinaryString(this.blob);
-      reader.onloadend = (event) => {
+       let reader = new FileReader();
+          reader.readAsBinaryString(this.blob);
+          reader.onloadend = (event) => {
           this.arraybytes = reader.result;  
        }        
   } 
@@ -64,11 +63,13 @@ export interface Professor {
    
     insertCourse($e){
       $e.preventDefault();
-      const active = this.myForm.get('active').value;
-      const title = this.myForm.get('title').value;
-      const level = this.myForm.get('level').value;
-      const hours = this.myForm.get('hours').value;
-     
+      let active = this.myForm.get('active').value;
+      let title = this.myForm.get('title').value;
+      let level = this.myForm.get('level').value;
+      let hours = this.myForm.get('hours').value;
+      if (active == 'undefined' || active == null || active == ''){
+          active = false;
+      } 
        let json = {
         "title":title,
         "professor": JSON.parse(this.myForm.controls.professor.value),
